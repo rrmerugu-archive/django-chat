@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Realtime Django</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
+	type="text/javascript"></script>
+<script src="http://localhost:4000/socket.io/socket.io.js"></script>
+<script>
+	$(document).ready(
+			function() {
+				var socket = io.connect('localhost', {
+					port : 4000
+				});
+
+				socket.on('connect', function() {
+					console.log("connect");
+				});
+
+				var entry_el = $('#comment');
+				socket.on('message', function(message) {
+					//Escape HTML characters
+					console.log(message);
+					//var data = message.replace(/&/g, "&amp;").replace(/</g,
+					//		"&lt;").replace(/>/g, "&gt;");
+
+					message = message.replace(/'/g,'"').replace(/u"/g,'"');
+					console.log(message);
+					message = JSON.parse(message);
+					 
+		 
+				
+				thedata  = '<li> \
+				<div class="row">\
+					<div class="col-md-1">\
+					<a href="#"><img  class="img-responsive pro-pic" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAHBAAAAJGZhM2I0NzZmLTNkM2EtNGY3MS1hY2NhLTllYjU4MDExYWM3MA.jpg"\
+							alt="" /></a>\
+					</div>\
+					<div class="col-md-11">\
+						<a href="#">'+message.user.username +'</a>\
+						<p>'+message.message.text+'</p>\
+					</div>\
+				</div>\
+			</li>'
+				
+					$('#comments').append(thedata	);
+					window.scrollBy(0, 10000000000);
+					entry_el.focus();
+				});
+
+				entry_el.keypress(function(event) {
+					//When enter is pressed send input value to node server
+					if (event.keyCode != 13)
+						return;
+					var msg = entry_el.attr('value');
+					if (msg) {
+						socket.emit('send_message', msg, function(data) {
+							console.log(data);
+						});
+
+						//Clear input value   
+						entry_el.attr('value', '');
+					}
+				});
+			});
+</script>
+<style>
+ul#comments li {
+	display: block;
+	border-bottom: 1px solid #efefef;
+	margin-top: 10px;
+}
+
+body {
+	background-color: #237CC7 !important;
+}
+
+.white {
+color: white !important;}
+
+.container {
+	background: white;
+	max-width: 800px !Important;
+	margin-top: 30px;
+	padding-top: 50px;
+
+}
+#comments{
+    overflow-y: scroll;;
+    height:300px;
+    overflow-x: hidden;
+}
+.pro-pic{
+width: 50px; margin-top: 6px !important;
+}
+</style>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous">
+</head>
+<body>
+<h1 class="text-center white">CHAT ME DUDE</h1>
+	<div class="container">
+		<ul id="comments">
+			{% for comment in comments %}
+			<li>
+				<div class="row">
+
+					<div class="col-md-1">
+						<a href="#"><img  class="img-responsive pro-pic "
+							src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAHBAAAAJGZhM2I0NzZmLTNkM2EtNGY3MS1hY2NhLTllYjU4MDExYWM3MA.jpg"
+							alt="" /></a>
+					</div>
+					<div class="col-md-11">
+						<a href="#">{{comment.user}}</a>
+						<p>{{comment.text}}</p>
+					</div>
+
+				</div>
+
+			</li> 
+			{% endfor %}
+	 
+		</ul>
+
+	<ul id="">
+	 
+ 
+			<li>
+
+				<div class="row">
+
+					<div class="col-md-11 col-md-offset-1">
+						<input style="border-radius: 1px;" type="text" autofocus
+							class="form-control" id="comment" name="comment" />
+					</div>
+				</div>
+			</li>
+		</ul>
+
+	</div>
+</body>
+</html>
