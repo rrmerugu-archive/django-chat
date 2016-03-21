@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Realtime Django</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet"
+	href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+
+
+ 
+<body>
+	
+ 
+ 
+<section class="bg-primary-color  pageview-h100">
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 " >
+
+
+
+			<div class="panel panel-default loginbox">
+			  <!--<div class="panel-heading"><i class="fa fa-lock"></i> Login</div>-->
+			  <div class="panel-body">
+
+
+
+
+				<form class="form-horizontal" name="LoginForm" action="." method="post">
+				{% csrf_token %}
+				{% if next %}
+					<input type="hidden" class="form-control" name="next" value="{{ next }}" />
+				{% endif %}
+				<div class="control-group">
+					<label class="control-label" for="username">username</label>
+					<div class="controls">
+						<input type="text" class="form-control"  autofocus id="username" name="username"  placeholder="username">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="password">Password</label>
+					<div class="controls">
+						<input type="password" class="form-control"  name="password" id="password" placeholder="Password">
+
+					</div>
+				</div>
+				<div class="control-group m-t-10">
+					<div class="controls">
+						<button type="submit" class="btn btn-primary">Login</button>
+					</div>
+				</div>
+				</form>
+
+				  <div class="clearfix  m-t-30"></div>
+				   <p><a href="/register/">New User ?</a> </p>
+
+
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+ 
+ 
+ 
+</body>
+</html>

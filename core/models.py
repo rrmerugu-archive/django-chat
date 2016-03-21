@@ -52,7 +52,7 @@ class User(AbstractBaseUser):
     date_joined =  models.DateTimeField(auto_now_add=True, null=True)
     first_name = models.CharField(max_length=10, blank=True)
     last_name = models.CharField(max_length=10, blank=True, null=True)
-    profile_pic = models.FileField(upload_to='user-profile-pic', default="http://jnrgym.com/wp-content/uploads/2013/08/Facebook-no-profile-picture-icon-620x389.jpg")
+    profile_pic = models.FileField(upload_to='user-profile-pic', default="http://style.anu.edu.au/_anu/4/images/placeholders/person.png")
 
     # Permission | Administration Purpose
     is_active = models.BooleanField(default=True)
