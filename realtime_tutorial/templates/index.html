@@ -9,13 +9,7 @@
 <script>
 	$(document).ready(
 			function() {
-				
-				
-				
-				
-				
-				
-				
+
 				document.getElementById("comments").scrollTop += 1000000;
 				
 				
@@ -116,7 +110,7 @@ width: 50px; margin-top: 6px !important;
 	href="http://getbootstrap.com/dist/css/bootstrap.min.css">
 </head>
 <body>
-<h1 class="text-center white">CHAT ME DUDE {{user.first_name}} <small><a class="white" href="/logout/">Logout</a></small></h1> 
+<h1 class="text-center white">R2 Chat | {{user.first_name}} <small><a class="white" href="/logout/">Logout</a></small></h1> 
 	<div class="container">
 		<ul id="comments">
 			{% for comment in comments %}

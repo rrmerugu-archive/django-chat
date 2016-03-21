@@ -3,6 +3,8 @@
 Realtime chat application built using Django
 
 
+![alt tag](chat.png)
+
 
 Assuming you have installed theses 
 
