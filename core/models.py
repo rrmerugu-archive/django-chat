@@ -48,8 +48,8 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractBaseUser):
     
     user_id = models.AutoField(primary_key=True)
-    username =  models.CharField(max_length=30, blank=True, null=True)
-    email    =  models.EmailField(max_length=150, blank=False, primary_key=False,  unique=True)
+    username =  models.CharField(max_length=30, blank=True, null=True, unique=True)
+    email    =  models.EmailField(max_length=150, blank=False, null=True, primary_key=False)
     date_joined =  models.DateTimeField(auto_now_add=True, null=True)
     first_name = models.CharField(max_length=10, blank=True)
     last_name = models.CharField(max_length=10, blank=True, null=True)
@@ -108,7 +108,7 @@ class User(AbstractBaseUser):
         data = {}
         data['username']  = self.username
         data['user_id'] = self.user_id
-#         data['profile_pic'] = self.profile_pic
+        data['profile_pic'] = self.profile_pic.url
         return data
 
 class Comments(models.Model):

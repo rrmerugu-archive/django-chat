@@ -33,7 +33,7 @@
 				thedata  = '<li> \
 				<div class="row">\
 					<div class="col-md-1">\
-					<a href="#"><img  class="img-responsive pro-pic" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAHBAAAAJGZhM2I0NzZmLTNkM2EtNGY3MS1hY2NhLTllYjU4MDExYWM3MA.jpg"\
+					<a href="#"><img  class="img-responsive pro-pic" src="'+ message.user.profile_pic+'"\
 							alt="" /></a>\
 					</div>\
 					<div class="col-md-11">\
@@ -97,12 +97,10 @@ width: 50px; margin-top: 6px !important;
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-	crossorigin="anonymous">
+	href="http://getbootstrap.com/dist/css/bootstrap.min.css">
 </head>
 <body>
-<h1 class="text-center white">CHAT ME DUDE</h1>
+<h1 class="text-center white">CHAT ME DUDE {{user.first_name}}</h1>
 	<div class="container">
 		<ul id="comments">
 			{% for comment in comments %}
@@ -110,8 +108,9 @@ width: 50px; margin-top: 6px !important;
 				<div class="row">
 
 					<div class="col-md-1">
+
 						<a href="#"><img  class="img-responsive pro-pic "
-							src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAHBAAAAJGZhM2I0NzZmLTNkM2EtNGY3MS1hY2NhLTllYjU4MDExYWM3MA.jpg"
+							src="{{comment.user.profile_pic}}"
 							alt="" /></a>
 					</div>
 					<div class="col-md-11">

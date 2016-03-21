@@ -13,6 +13,7 @@ from django.core import serializers
 @login_required
 def home(request):
     comments = Comments.objects.select_related().all().order_by('-id')[:10][::-1]
+    user = request.user
     return render(request, 'index.html', locals())
 
 @csrf_exempt
