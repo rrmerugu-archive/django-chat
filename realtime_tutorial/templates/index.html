@@ -9,6 +9,17 @@
 <script>
 	$(document).ready(
 			function() {
+				
+				
+				
+				
+				
+				
+				
+				document.getElementById("comments").scrollTop += 1000000;
+				
+				
+				
 				var socket = io.connect('localhost', {
 					port : 4000
 				});
@@ -32,11 +43,11 @@
 				
 				thedata  = '<li> \
 				<div class="row">\
-					<div class="col-md-1">\
+					<div class="col-sm-1">\
 					<a href="#"><img  class="img-responsive pro-pic" src="'+ message.user.profile_pic+'"\
 							alt="" /></a>\
 					</div>\
-					<div class="col-md-11">\
+					<div class="col-sm-11">\
 						<a href="#">'+message.user.username +'</a>\
 						<p>'+message.message.text+'</p>\
 					</div>\
@@ -44,7 +55,8 @@
 			</li>'
 				
 					$('#comments').append(thedata	);
-					window.scrollBy(0, 10000000000);
+					//$('#comments').scrollBy(0, 10000000000);
+					document.getElementById("comments").scrollTop += 1000000;
 					entry_el.focus();
 				});
 
@@ -104,22 +116,26 @@ width: 50px; margin-top: 6px !important;
 	<div class="container">
 		<ul id="comments">
 			{% for comment in comments %}
+			
+			 
 			<li>
-				<div class="row">
+			  
+				<div class="row"  >
 
-					<div class="col-md-1">
+					<div class="col-sm-1">
 
 						<a href="#"><img  class="img-responsive pro-pic "
 							src="{{comment.user.profile_pic}}"
 							alt="" /></a>
 					</div>
-					<div class="col-md-11">
+					<div class="col-sm-11">
 						<a href="#">{{comment.user}}</a>
 						<p>{{comment.text}}</p>
 					</div>
 
 				</div>
-
+				
+ 
 			</li> 
 			{% endfor %}
 	 
@@ -132,7 +148,7 @@ width: 50px; margin-top: 6px !important;
 
 				<div class="row">
 
-					<div class="col-md-11 col-md-offset-1">
+					<div class="col-sm-11 col-sm-offset-1">
 						<input style="border-radius: 1px;" type="text" autofocus
 							class="form-control" id="comment" name="comment" />
 					</div>

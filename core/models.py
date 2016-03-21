@@ -1,7 +1,6 @@
 from django.db import models
- 
-
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.conf import settings
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, first_name, password=None):
@@ -108,7 +107,8 @@ class User(AbstractBaseUser):
         data = {}
         data['username']  = self.username
         data['user_id'] = self.user_id
-        data['profile_pic'] = self.profile_pic.url
+        # this will return the image url
+        data['profile_pic'] = self.profile_pic.url.replace(settings.MEDIA_URL,'').replace('%3A',':')
         return data
 
 class Comments(models.Model):
