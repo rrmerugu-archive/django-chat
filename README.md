@@ -31,12 +31,4 @@ node chat.js #this opens socket.io server on localhost:4000
 
 ```
 
-## Data dumps 
-
-`dump/sampleusers.json` contains two users, with username `sunnyleone` and `honeysingh` with password `welcome` for both.
- 
-
-
-update query 
-update public.core_user set  profile_pic='http://files.prokerala.com/imgs/pics/original/celebrities/yo-yo-honey-singh.jpg'    where username='honeysingh';
  
